@@ -1,10 +1,35 @@
-# The contents of this file get pasted into others
-# Copyright (C) 2005-2007 California Institute of Technology, All rights reserved
+# Copyright (c) 2005-2008, California Institute of Technology
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+# A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+# OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+# SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+# LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
 # Author: Andrew D. Straw
 from util import get_mean_interommatidial_distance
 
 if __name__ == '__main__':
-    
+
     if 0:
         v2 = [ (v.x, v.y, v.z) for v in receptor_dirs ]
         if 0:
@@ -24,7 +49,7 @@ if __name__ == '__main__':
     if 1:
         import vtk
         from vtk.util.colors import red, purple, banana
-        
+
         def init_vtk():
 
             renWin = vtk.vtkRenderWindow()
@@ -44,10 +69,10 @@ if __name__ == '__main__':
                 ren1.SetActiveCamera( camera )
                 renWin.AddRenderer( ren1 )
                 renderers.append( ren1 )
-                
+
             renWin.SetSize( 1024, 768 )
             return renWin, renderers
-    
+
         def interact_with_renWin(renWin, ren1=None, actor=None):
 
             iren = vtk.vtkRenderWindowInteractor()
@@ -59,7 +84,7 @@ if __name__ == '__main__':
             renWin.Render()
 
             iren.Start()
-            
+
         renWin, renderers = init_vtk()
 
         camera = renderers[0].GetActiveCamera()
@@ -91,8 +116,8 @@ if __name__ == '__main__':
                 textActor.AddPosition(v.x*mult,v.y*mult,v.z*mult)
                 for renderer in renderers:
                     renderer.AddActor( textActor )
-            
-            
+
+
         def vtk_draw(receptor_dirs, triangles, hex_faces, renderers):
             tri_points = vtk.vtkPoints()
             tri_cells = vtk.vtkCellArray()
@@ -100,7 +125,7 @@ if __name__ == '__main__':
             body_line_points = vtk.vtkPoints()
             body_lines = vtk.vtkCellArray()
             body_point_num = 0
-            
+
             for v in receptor_dirs:
                 #if v.z > 0:
                 if 1:

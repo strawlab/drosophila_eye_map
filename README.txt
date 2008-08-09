@@ -1,17 +1,29 @@
+`Drosophila eye map`_
+
+.. _drosophila eye map: http://code.astraw.com/projects/drosophila_eye_map
+
 Overview
 ========
 
-This software package concerns the eye-map of Drosophila made by Erich
-Buchner during his diplom thesis in 1971. This eye map was published
-in Heisenberg and Wolf (1984). These data were digitized from a scan
-of the photo in the book and coverted to 3D and saved to the included
-file receptor_directions_buchner71.csv.
+This software package concerns the eye-map of `Drosophila
+melanogaster` made by Erich Buchner during his diplom thesis in
+1971. This eye map was published in Heisenberg and Wolf (1984). These
+data were digitized from a scan of the photo in the book and coverted
+to 3D and saved to the included file
+receptor_directions_buchner71.csv.
+
+Download
+========
+
+To download current and older versions of this package, go to the `download page`_
+
+.. _download page: http://code.astraw.com/projects/drosophila_eye_map/download
 
 History
 =======
 
 These programs and files have been extraced from Andrew Straw's
-"fsee" software package for simulating the visual world of
+"fsee" `software package`_ for simulating the visual world of
 Drosophila described in Dickson, Straw, and Dickinson (in press). At
 the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
@@ -19,8 +31,10 @@ would be useful to others, and so he created this package.
 
 This is release 0.1, released August 9, 2008.
 
-Contents
-========
+.. _software package: http://dickinson.caltech.edu/Research/Grand_Unified_Fly
+
+Contents of the package
+=======================
 
  * README.txt - this file
 

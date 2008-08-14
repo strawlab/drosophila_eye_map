@@ -657,121 +657,7 @@ def my_voronoi( tri, verts_x, verts_y ):
 
     return all_ordered_tri_idxs
 
-###########################################################
-
-Mforward = get_rot_mat(-numpy.pi/2,1,0,0)
-scale = numpy.eye(3)
-scale[2,2]=-1
-Mforward = numpy.dot(Mforward,scale)
-xform_my_long_lat_2_heisenberg = LongLatRotator(Mforward)
-Mreverse = numpy.linalg.inv(Mforward)
-xform_heisenberg_long_lat_2_my = LongLatRotator(Mreverse)
-
-## triangulate data ###############################
-
-left_tri = delaunay.Triangulation(x, y)
-
-## transform data to long & lat ###################
-hlong,hlat,hR = xform_stereographic_2_long_lat(x,y)
-long,lat,R = xform_heisenberg_long_lat_2_my(hlong,hlat,hR)
-
-## put in form similar to output of make_receptor_info #
-left_receptor_dirs = numpy.asarray(long_lat2xyz(long,lat,R))
-left_receptor_dirs = numpy.transpose( left_receptor_dirs )
-left_receptor_dirs = [cgtypes.vec3(v) for v in left_receptor_dirs]
-left_triangles = left_tri.triangle_nodes
-left_ordered_tri_idxs = my_voronoi(left_tri,x,y)
-left_hex_faces = []
-for center_vert_idx in range(len(left_receptor_dirs)):
-    center_vert = left_receptor_dirs[center_vert_idx]
-    this_ordered_tri_idxs = left_ordered_tri_idxs[center_vert_idx]
-    this_face = []
-    for tri_idx in this_ordered_tri_idxs:
-        if tri_idx == -1:
-            this_vert = center_vert
-        else:
-            nodes = left_triangles[tri_idx]
-            this_vert = (left_receptor_dirs[int(nodes[0])]+
-                         left_receptor_dirs[int(nodes[1])]+
-                         left_receptor_dirs[int(nodes[2])])*(1.0/3.0)
-        this_face.append(this_vert)
-    left_hex_faces.append(this_face)
-
-###############################
-# duplicate for right eye
-
-right_receptor_dirs = [cgtypes.vec3((v.x,-v.y,v.z)) for v in left_receptor_dirs]
-receptor_dirs = left_receptor_dirs + right_receptor_dirs
-
-right_idx_offset = len(left_receptor_dirs)
-
-right_triangles = []
-for tri in left_triangles:
-    newtri = []
-    for idx in tri:
-        newtri.append( idx+right_idx_offset )
-    right_triangles.append(newtri)
-triangles = list(left_triangles) + right_triangles
-
-right_hex_faces = []
-for face in left_hex_faces:
-    newface = []
-    for v in face:
-        newface.append( cgtypes.vec3((v.x,-v.y,v.z)) )
-    right_hex_faces.append(newface)
-hex_faces = list(left_hex_faces) + right_hex_faces
-
-###############################
-
-receptor_dir_slicer = {None:slice(0,len(receptor_dirs),1),
-                       'left':slice(0,right_idx_offset,1),
-                       'right':slice(right_idx_offset,len(receptor_dirs),1)}
-
-###############################
-
-print 'calculating interommatidial distances'
-delta_phi = get_mean_interommatidial_distance(receptor_dirs,triangles)
-delta_rho_q = numpy.asarray(delta_phi) * 1.1 # rough approximation. follows from caption of Fig. 18, Buchner, 1984 (in Ali)
-
-# make optical lowpass filters
-
-print 'calculating weight_maps...'
-weight_maps_64 = make_receptor_sensitivities( receptor_dirs,
-                                           delta_rho_q=delta_rho_q,
-                                           res=64 )
-print 'done'
-
-if 1:
-    clip_thresh=1e-5
-    floattype=numpy.float32
-    tmp_weights = flatten_cubemap( weight_maps_64[0] ) # get first one to take size
-
-    n_receptors = len(receptor_dirs)
-    len_wm = len(tmp_weights)
-
-    print 'allocating memory...'
-    bigmat_64 = numpy.zeros( (n_receptors, len_wm), dtype=floattype )
-    print 'done'
-
-    print 'flattening, clipping, casting...'
-    for i, weight_cubemap in enumerate(weight_maps_64):
-        weights = flatten_cubemap( weight_cubemap )
-        if clip_thresh is not None:
-            weights = numpy.choose(weights<clip_thresh,(weights,0))
-        bigmat_64[i,:] = weights.astype( bigmat_64.dtype )
-    print 'done'
-
-    print 'worst gain (should be unity)',min(numpy.sum( bigmat_64, axis=1))
-    print 'filling spmat_64...'
-    sys.stdout.flush()
-    spmat_64 = scipy.sparse.csc_matrix(bigmat_64)
-    print 'done'
-
-    M,N = bigmat_64.shape
-    print 'Compressed to %d of %d'%(len(spmat_64.data),M*N)
-
 ## plot 2D data ###################
-
 def plot_stuff():
     import pylab
     pylab.plot(x,y,'ko')
@@ -816,7 +702,120 @@ def plot_stuff():
     pylab.setp(pylab.gca(),'aspect','equal')
     pylab.show()
 
+###########################################################
 def main():
+    Mforward = get_rot_mat(-numpy.pi/2,1,0,0)
+    scale = numpy.eye(3)
+    scale[2,2]=-1
+    Mforward = numpy.dot(Mforward,scale)
+    xform_my_long_lat_2_heisenberg = LongLatRotator(Mforward)
+    Mreverse = numpy.linalg.inv(Mforward)
+    xform_heisenberg_long_lat_2_my = LongLatRotator(Mreverse)
+
+    ## triangulate data ###############################
+
+    left_tri = delaunay.Triangulation(x, y)
+
+    ## transform data to long & lat ###################
+    hlong,hlat,hR = xform_stereographic_2_long_lat(x,y)
+    long,lat,R = xform_heisenberg_long_lat_2_my(hlong,hlat,hR)
+
+    ## put in form similar to output of make_receptor_info #
+    left_receptor_dirs = numpy.asarray(long_lat2xyz(long,lat,R))
+    left_receptor_dirs = numpy.transpose( left_receptor_dirs )
+    left_receptor_dirs = [cgtypes.vec3(v) for v in left_receptor_dirs]
+    left_triangles = left_tri.triangle_nodes
+    left_ordered_tri_idxs = my_voronoi(left_tri,x,y)
+    left_hex_faces = []
+    for center_vert_idx in range(len(left_receptor_dirs)):
+        center_vert = left_receptor_dirs[center_vert_idx]
+        this_ordered_tri_idxs = left_ordered_tri_idxs[center_vert_idx]
+        this_face = []
+        for tri_idx in this_ordered_tri_idxs:
+            if tri_idx == -1:
+                this_vert = center_vert
+            else:
+                nodes = left_triangles[tri_idx]
+                this_vert = (left_receptor_dirs[int(nodes[0])]+
+                             left_receptor_dirs[int(nodes[1])]+
+                             left_receptor_dirs[int(nodes[2])])*(1.0/3.0)
+            this_face.append(this_vert)
+        left_hex_faces.append(this_face)
+
+    ###############################
+    # duplicate for right eye
+
+    right_receptor_dirs = [cgtypes.vec3((v.x,-v.y,v.z)) for v in left_receptor_dirs]
+    receptor_dirs = left_receptor_dirs + right_receptor_dirs
+
+    right_idx_offset = len(left_receptor_dirs)
+
+    right_triangles = []
+    for tri in left_triangles:
+        newtri = []
+        for idx in tri:
+            newtri.append( idx+right_idx_offset )
+        right_triangles.append(newtri)
+    triangles = list(left_triangles) + right_triangles
+
+    right_hex_faces = []
+    for face in left_hex_faces:
+        newface = []
+        for v in face:
+            newface.append( cgtypes.vec3((v.x,-v.y,v.z)) )
+        right_hex_faces.append(newface)
+    hex_faces = list(left_hex_faces) + right_hex_faces
+
+    ###############################
+
+    receptor_dir_slicer = {None:slice(0,len(receptor_dirs),1),
+                           'left':slice(0,right_idx_offset,1),
+                           'right':slice(right_idx_offset,len(receptor_dirs),1)}
+
+    ###############################
+
+    print 'calculating interommatidial distances'
+    delta_phi = get_mean_interommatidial_distance(receptor_dirs,triangles)
+    delta_rho_q = numpy.asarray(delta_phi) * 1.1 # rough approximation. follows from caption of Fig. 18, Buchner, 1984 (in Ali)
+
+    # make optical lowpass filters
+
+    print 'calculating weight_maps...'
+    weight_maps_64 = make_receptor_sensitivities( receptor_dirs,
+                                               delta_rho_q=delta_rho_q,
+                                               res=64 )
+    print 'done'
+
+    clip_thresh=1e-5
+    floattype=numpy.float32
+    tmp_weights = flatten_cubemap( weight_maps_64[0] ) # get first one to take size
+
+    n_receptors = len(receptor_dirs)
+    len_wm = len(tmp_weights)
+
+    print 'allocating memory...'
+    bigmat_64 = numpy.zeros( (n_receptors, len_wm), dtype=floattype )
+    print 'done'
+
+    print 'flattening, clipping, casting...'
+    for i, weight_cubemap in enumerate(weight_maps_64):
+        weights = flatten_cubemap( weight_cubemap )
+        if clip_thresh is not None:
+            weights = numpy.choose(weights<clip_thresh,(weights,0))
+        bigmat_64[i,:] = weights.astype( bigmat_64.dtype )
+    print 'done'
+
+    print 'worst gain (should be unity)',min(numpy.sum( bigmat_64, axis=1))
+    print 'filling spmat_64...'
+    sys.stdout.flush()
+    spmat_64 = scipy.sparse.csc_matrix(bigmat_64)
+    print 'done'
+
+    M,N = bigmat_64.shape
+    print 'Compressed to %d of %d'%(len(spmat_64.data),M*N)
+
+    ######################
+
     fd = open('receptor_directions_buchner71.csv','w')
     writer = csv.writer( fd )
     for row in receptor_dirs:

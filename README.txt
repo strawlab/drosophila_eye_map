@@ -45,7 +45,8 @@ Contents of the package
    vectors in a unit sphere. Output by
    precompte_buchner71_optics.py. Note that this includes axes for
    both eyes (1398 ommatidia). To get the axes for a single eye, take
-   the first or last 699 rows.
+   the first or last 699 rows. The coordinate system is arranged so
+   that +X is frontal (rostral), +Y is left, and +Z is dorsal.
 
  * trace_buchner_1971.py - Python script used to digitize the
    locations of the ommatidial axes on the stereographic projection of

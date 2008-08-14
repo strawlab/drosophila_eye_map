@@ -1,5 +1,6 @@
-# This script will regenerate the webpage, the .zip file, and attempt
-# to upload them to Andrew's website.
+# This script is probably only useful to Andrew Straw when performing
+# maintainence of the package.  It will regenerate the webpage, the
+# .zip file, and attempt to upload them to Andrew's website.
 
 # generate index.html from README.txt
 rst2html --stylesheet=../../default.css --link-stylesheet -g -d -s README.txt index.html

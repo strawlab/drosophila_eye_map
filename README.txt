@@ -1,4 +1,6 @@
-`Drosophila eye map`_
+=======================
+ `Drosophila eye map`_
+=======================
 
 .. _drosophila eye map: http://code.astraw.com/projects/drosophila_eye_map
 
@@ -11,6 +13,15 @@ melanogaster` made by Erich Buchner during his diplom thesis in
 data were digitized from a scan of the photo in the book and coverted
 to 3D and saved to the included file
 receptor_directions_buchner71.csv.
+
+.. figure:: http://code.astraw.com/projects/drosophila_eye_map/download/eye_map_small.gif
+    :alt: Drosophila eye map
+    :width: 400
+    :height: 278
+    :target: http://code.astraw.com/projects/drosophila_eye_map/download/eye_map.gif
+
+    The `Drosophila melanogaster` eye map of Buchner (1971), as
+    published in Heisenberg and Wolf (1984).
 
 Download
 ========
@@ -69,9 +80,7 @@ License
 
 This software was written by Andrew Straw <astraw@caltech.edu>, is
 copyright by the California Institute of Technology, and is licensed
-under the BSD license. The license status of the eye_map.gif file
-itself is unclear and should be determined before any attempts at
-redistribution.
+under the BSD license.
 
 References
 ==========

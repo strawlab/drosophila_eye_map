@@ -28,6 +28,7 @@
 # Author: Andrew D. Straw
 
 from __future__ import division
+import os, hashlib
 import Image
 import pylab
 import numpy
@@ -35,7 +36,24 @@ import numpy
 R2D=180/numpy.pi
 D2R=1/R2D
 
-im = Image.open('eye_map.gif')
+def check_eye_map_gif(fname):
+    # Ensure that the eye_map.gif file is what is expected.
+    if not os.path.exists(fname):
+        raise RuntimeError('The file "%s" was not found. Download from '
+        'http://code.astraw.com/projects/drosophila_eye_map/download/eye_map.gif'%(
+            fname,))
+    m = hashlib.md5()
+    m.update( open(fname,mode='rb').read() )
+    actual_md5 = m.hexdigest()
+    expected_md5 = '4ba242820fd02c398fcde5cdec38e62d'
+    if not expected_md5==actual_md5:
+        raise RuntimeError('The file "%s" had an unexpected md5sum. Download from '
+        'http://code.astraw.com/projects/drosophila_eye_map/download/eye_map.gif'%(
+            fname,))
+
+fname = 'eye_map.gif'
+check_eye_map_gif(fname)
+im = Image.open(fname)
 aspect_ratio = im.size[0]/im.size[1]
 # center of image coordinates:
 

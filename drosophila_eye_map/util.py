@@ -271,3 +271,14 @@ def get_code_for_var( name, fname_prefix, var):
             else:
                 raise RuntimeError("failed conversion for %s (type %s)"%(repr(var),str(type(var))))
 
+def xyz2lonlat(x,y,z):
+    R2D = 180.0/math.pi
+    try:
+        lat = math.asin(z)*R2D
+    except ValueError,err:
+        if z>1 and z < 1.1:
+            lat = math.asin(1.0)*R2D
+        else:
+            raise
+    lon1 = math.atan2(y,x)*R2D
+    return lon1,lat

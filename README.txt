@@ -23,6 +23,19 @@ receptor_directions_buchner71.csv.
     The `Drosophila melanogaster` eye map of Buchner (1971), as
     published in Heisenberg and Wolf (1984).
 
+.. figure:: http://code.astraw.com/projects/drosophila_eye_map/download/interommatidial_distance_small.gif
+   :alt: Drosophila eye map with interommatidial distance
+   :width: 400
+   :height: 300
+   :target: http://code.astraw.com/projects/drosophila_eye_map/download/interommatidial_distance.png
+
+   Data of Buchner (1971) showing the eye map of `Drosophila
+   melanogaster` eye map overlaid on a colormap showing
+   interommatidial distance averaged over each ommatidiums nearest
+   neighbors. (This image was generated using the
+   make_buchner_interommatidial_distance_figure.py script included in
+   the package.)
+
 Download
 ========
 
@@ -35,7 +48,7 @@ History
 
 These programs and files have been extraced from Andrew Straw's
 "fsee" `software package`_ for simulating the visual world of
-Drosophila described in Dickson, Straw, and Dickinson (in press). At
+Drosophila described in Dickson, Straw, and Dickinson (2008). At
 the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
 would be useful to others, and so he created this package.
@@ -48,8 +61,6 @@ Contents of the package
 =======================
 
  * README.txt - this file
-
- * eye_map.gif - a scan of the eye-map as published in Heisenberg and Wolf (1984).
 
  * receptor_directions_buchner71.csv - Comma separated value (CSV)
    file which indicates the directions of the ommaditial axes in 3D as
@@ -75,6 +86,9 @@ Contents of the package
  * plot_receptors_vtk.py - Python script which is automatically
    inserted into the output of precompute_buchner71_optics.py.
 
+ * make_buchner_interommatidial_distance_figure.py - Plot Buchner's
+   data overlaid on a colormap showing mean interommatidial distance.
+
 License
 =======
 
@@ -85,12 +99,12 @@ under the BSD license.
 References
 ==========
 
-Heisenberg, M. and Wolf, R., (1984) Vision in Drosophila: Genetics
-Microbehavior (Studies of Brain Function). Springer Verlag.
+Heisenberg, M. and Wolf, R., (1984) `Vision in Drosophila: Genetics
+Microbehavior (Studies of Brain Function).` Springer Verlag.
 
-Dickson, W.B., Straw, A.D., and Dickinson, M.H. (in press)
-"Integrative Model of Drosophila Flight." AIAA Journal.
+Dickson, W.B., Straw, A.D., and Dickinson, M.H. (2008) "Integrative
+Model of Drosophila Flight." `AIAA Journal`, 46(9).
 
 Neumann, T. (2002) "Modeling Insect Compound Eyes: Space-Variant
-Spherical Vision." Biologically Motivated Computer Vision,
-Proceedings. Springer Verlag. Vol 2525, pp. 360-367.
+Spherical Vision." `Biologically Motivated Computer Vision,
+Proceedings`. Springer Verlag. Vol 2525, pp. 360-367.

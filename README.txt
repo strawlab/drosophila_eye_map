@@ -94,7 +94,15 @@ License
 
 This software was written by Andrew Straw <astraw@caltech.edu>, is
 copyright by the California Institute of Technology, and is licensed
-under the BSD license.
+under the BSD license. See the LICENSE.txt file for details.
+
+Related software
+================
+
+`ArthroVision by the Invariant Corporation`_ is an insect optics
+simulation package.
+
+.. _ArthroVision by the Invariant Corporation: http://www.invariant-corp.com/news.html#eglin
 
 References
 ==========

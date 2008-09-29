@@ -2,7 +2,7 @@
 # maintainence of the package.  It will regenerate the webpage, the
 # .zip file, and attempt to upload them to Andrew's website.
 
-echo "Andrew: copy the README.txt file into work-webste/input-code/projects/drosophila_eye_map/README.txt and run ./build.sh"
+echo "Andrew: copy the README.txt file into ~/src/astraw-private-repo/work-website/input-code/drosophila_eye_map/README.txt"
 
 VERSION=0.3
 

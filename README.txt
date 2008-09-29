@@ -74,6 +74,8 @@ Contents of the package
 
  * README.txt - this file
 
+ * CHANGELOG.txt - list of changes since last release
+
  * receptor_directions_buchner71.csv - Comma separated value (CSV)
    file which indicates the directions of the ommaditial axes in 3D as
    vectors in a unit sphere. Output by

@@ -2,6 +2,10 @@
 # maintainence of the package.  It will regenerate the webpage, the
 # .zip file, and attempt to upload them to Andrew's website.
 
+echo "This file is outdated and therefore broken."
+echo "copy the README.txt file into work-webste/input-code/projects/drosophila_eye_map/README.txt and run ./build.sh"
+exit 1
+
 # generate index.html from README.txt
 rst2html --stylesheet=../../default.css --link-stylesheet -g -d -s README.txt index.html
 

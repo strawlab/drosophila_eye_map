@@ -26,13 +26,11 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # Author: Andrew D. Straw
-import cgkit.cgtypes as cgtypes # cgkit 2
+import cgtypes # cgkit 1.x
 import math
 import numpy
 import scipy, scipy.io
 import sets
-import cgkit # cgkit 2.x
-import cgkit.cgtypes as cgtypes
 
 cube_order = ['posx','negx','posy','negy','posz','negz']
 
@@ -155,7 +153,6 @@ def make_receptor_sensitivities(all_d_q,delta_rho_q=None,res=64):
         return wm
 
     for dqi,(d_q,this_delta_rho_q) in enumerate(zip(all_d_q,all_delta_rho_qs)):
-        print '%d of %d'%(dqi+1, len(all_d_q))
         weight_maps_d_q = {}
         ssf = 0.0
 
@@ -177,13 +174,9 @@ def flatten_cubemap( cubemap ):
     return rank1
 
 def make_repr_able(x):
-    if isinstance(x, cgkit.cgtypes.vec3):
+    if isinstance(x, cgtypes.vec3):
         return repr_vec3(x)
-    elif isinstance(x, cgkit._core.vec3):
-        return repr_vec3(x)
-    elif isinstance(x, cgkit.cgtypes.quat):
-        return repr_quat(x)
-    elif isinstance(x, cgkit._core.quat):
+    elif isinstance(x, cgtypes.quat):
         return repr_quat(x)
     elif isinstance(x, list):
         # recurse into
@@ -194,16 +187,16 @@ def make_repr_able(x):
 
 class repr_vec3(cgtypes.vec3):
     def __repr__(self):
-        return 'cgkit.cgtypes.vec3(%s, %s, %s)'%( repr(self.x),
-                                                  repr(self.y),
-                                                  repr(self.z) )
+        return 'vec3(%s, %s, %s)'%( repr(self.x),
+                                    repr(self.y),
+                                    repr(self.z) )
 
 class repr_quat(cgtypes.quat):
     def __repr__(self):
-        return 'cgkit.cgtypes.quat(%s, %s, %s, %s)'%( repr(self.w),
-                                                      repr(self.x),
-                                                      repr(self.y),
-                                                      repr(self.z) )
+        return 'quat(%s, %s, %s, %s)'%( repr(self.w),
+                                        repr(self.x),
+                                        repr(self.y),
+                                        repr(self.z) )
 
 def test_repr():
     x = repr_vec3(1,2,3.0000001)
@@ -211,7 +204,7 @@ def test_repr():
     x2 = eval(ra)
     assert x2.z == x.z
 
-    y = [cgkit.cgtypes.vec3(1,2,3.0000001)]
+    y = [cgtypes.vec3(1,2,3.0000001)]
     y2 = map(make_repr_able,y)
     assert y[0].z == y2[0].z
 
@@ -220,7 +213,7 @@ def test_repr():
     x2 = eval(ra)
     assert x2.z == x.z
 
-    y = [cgkit.cgtypes.quat(0.1,1,2,3.0000001)]
+    y = [cgtypes.quat(0.1,1,2,3.0000001)]
     y2 = map(make_repr_able,y)
     assert y[0].z == y2[0].z
 
@@ -258,6 +251,10 @@ def get_code_for_var( name, fname_prefix, var):
     if 1:
         ra = repr(var)
         # now check that conversion worked
+
+        # put these in the namespace
+        vec3 = cgtypes.vec3
+        quat = cgtypes.quat
         try:
             cmp = eval(ra)
         except Exception, err:
@@ -269,7 +266,28 @@ def get_code_for_var( name, fname_prefix, var):
             if cmp==var:
                 return '%s = '%(name,)+ra+'\n'
             else:
-                raise RuntimeError("failed conversion for %s (type %s)"%(repr(var),str(type(var))))
+                if 1:
+                    # This is a crazy test because equality testing in
+                    # cgkit 1.x doesn't seem to work very well.
+                    isseq = False
+                    try:
+                        len(var)
+                        isseq = True
+                    except:
+                        pass
+
+                    if isseq:
+                        assert len(var) == len(cmp)
+                        for idx in range(len(var)):
+                            if var[idx] != cmp[idx]:
+                                if repr(var[idx]) == repr(cmp[idx]):
+                                    continue
+                                raise RuntimeError("equality failure at idx %d. Original = %s, new = %s"%(
+                                    idx,repr(var[idx]),repr(cmp[idx])))
+                        # hmm, why weren't these equal? i guess there's more precision than repr() checks?
+                        return '%s = '%(name,)+ra+'\n'
+                else:
+                    raise RuntimeError("failed conversion for %s (type %s)"%(repr(var),str(type(var))))
 
 def xyz2lonlat(x,y,z):
     R2D = 180.0/math.pi

@@ -34,7 +34,7 @@ Heisenberg, M. and Wolf, R., \enquote{Vision in Drosophila: Genetics of
   Microbehavior (Studies of Brain Function)}, Springer Verlag, 1984.
 """
 
-import cgkit.cgtypes as cgtypes # cgkit 2.x
+import cgtypes # cgkit 1.x
 import numpy
 import scipy.sparse
 array=numpy.array
@@ -830,7 +830,7 @@ def main():
     fd.write( 'import os\n')
     fd.write( 'datadir = os.path.split(__file__)[0]\n')
     fd.write( 'cube_order = %s\n'%repr(cube_order) )
-    fd.write( 'import cgkit.cgtypes #cgkit 2.x\n')
+    fd.write( 'from cgtypes import vec3, quat #cgkit 1.x\n')
     save_as_python(fd, receptor_dir_slicer, 'receptor_dir_slicer',
                    fname_extra='_buchner71' )
     save_as_python(fd, spmat_64, 'receptor_weight_matrix_64', fname_extra='_buchner71' )

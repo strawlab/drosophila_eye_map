@@ -76,6 +76,16 @@ def do_projection( proj, lon_lats, dists, xres = 120, yres = 100 ):
 
 x,y,X,Y,Z = do_projection(stere,lon_lats,dists)
 
+import matplotlib
+rcParams = matplotlib.rcParams
+rcParams['font.size'] = 10
+rcParams['font.family'] = 'serif'
+#rcParams['font.serif'] = 'Times'
+#rcParams['font.sans-serif'] = 'Arial'
+if 0:
+    from matplotlib import verbose
+    verbose.level = 'debug-annoying'
+
 import matplotlib.pyplot as plt
 import matplotlib.cm
 
@@ -125,7 +135,9 @@ CS = plt.contour(Y,X,Z,
                    levels=np.linspace(4,16,13),
                    colors='k',
                    )
-plt.clabel(CS,fmt='%.1f',colors='k')
+plt.clabel(CS,
+           fmt='%.1f',
+           colors='k')
 
 ax.plot(x,y,'wo',ms=4.0)
 
@@ -191,6 +203,11 @@ meridians = [m for m in meridians if m!=0.0]
 ortho.drawmeridians(meridians,ax=ax)
 ortho.drawmeridians([0.0],linestyle='-',dashes=[],ax=ax)
 ortho.drawmapboundary(ax=ax)
+
+# Text p. 12 of Heisenberg, M. and Wolf, R., (1984) implies this was a
+# female.
+#plt.title(unichr(2640)+' average inter-ommatidial angle (degrees)')
+plt.title('female average inter-ommatidial angle (degrees)')
 
 save_fname = 'interommatidial_distance_ortho.png'
 print 'saving',save_fname

@@ -30,9 +30,23 @@ receptor_directions_buchner71.csv.
 
    Data of Buchner showing the eye map of `Drosophila melanogaster`
    eye map overlaid on a colormap showing interommatidial distance
-   averaged over each ommatidiums nearest neighbors. (This image was
+   averaged over each ommatidium's nearest neighbors. (This image was
    generated using the make_buchner_interommatidial_distance_figure.py
    script included in the package.)
+
+.. figure:: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance_ortho_small.gif
+   :alt: Orthographic projection Drosophila eye map with interommatidial distance
+   :width: 285
+   :height: 300
+   :target: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance_ortho.png
+
+   Same data as the color stereographic projection above, but plotted
+   on an orthographic projection for comparison with an `eyemap of
+   Eristalis tenax`_.  (This image was generated using the
+   make_buchner_interommatidial_distance_figure.py script included in
+   the package.)
+
+.. _eyemap of Eristalis tenax: http://jeb.biologists.org/cgi/content/full/209/21/4339/FIG1
 
 Download
 ========
@@ -51,7 +65,7 @@ the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
 would be useful to others, and so he created this package.
 
-This is release 0.2, released August 20, 2008.
+This is release 0.3, released September 29, 2008.
 
 .. _software package: http://dickinson.caltech.edu/Research/Grand_Unified_Fly
 

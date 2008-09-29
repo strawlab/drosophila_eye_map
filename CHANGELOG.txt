@@ -1,0 +1,13 @@
+Release 0.3
+===========
+
+* convert to cgkit 1.x
+
+* update docs to point to new website location  in README.txt
+
+* produce orthographic projection figure in
+  make_buchner_interommatidial_distance_figure.py
+
+* update references in README.txt
+
+* add this file (CHANGELOG.txt)

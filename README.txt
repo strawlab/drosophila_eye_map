@@ -2,7 +2,7 @@
  `Drosophila eye map`_
 =======================
 
-.. _drosophila eye map: http://code.astraw.com/projects/drosophila_eye_map
+.. _drosophila eye map: http://code.astraw.com/drosophila_eye_map
 
 Overview
 ========
@@ -13,20 +13,20 @@ melanogaster` made by Erich Buchner during his diplom thesis in
 Buchner's figure and coverted to 3D and saved to the included file
 receptor_directions_buchner71.csv.
 
-.. figure:: http://code.astraw.com/projects/drosophila_eye_map/download/eye_map_small.gif
+.. figure:: http://code.astraw.com/drosophila_eye_map/download/eye_map_small.gif
     :alt: Drosophila eye map
     :width: 400
     :height: 278
-    :target: http://code.astraw.com/projects/drosophila_eye_map/download/eye_map.gif
+    :target: http://code.astraw.com/drosophila_eye_map/download/eye_map.gif
 
     The `Drosophila melanogaster` eye map of Buchner (1971) [#Buchner]_, as
     published in Heisenberg and Wolf (1984) [#Heisenberg]_ on page 11, Fig. 2.
 
-.. figure:: http://code.astraw.com/projects/drosophila_eye_map/download/interommatidial_distance_small.gif
+.. figure:: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance_small.gif
    :alt: Drosophila eye map with interommatidial distance
    :width: 400
    :height: 300
-   :target: http://code.astraw.com/projects/drosophila_eye_map/download/interommatidial_distance.png
+   :target: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance.png
 
    Data of Buchner showing the eye map of `Drosophila melanogaster`
    eye map overlaid on a colormap showing interommatidial distance
@@ -39,7 +39,7 @@ Download
 
 To download current and older versions of this package, go to the `download page`_
 
-.. _download page: http://code.astraw.com/projects/drosophila_eye_map/download
+.. _download page: http://code.astraw.com/drosophila_eye_map/download
 
 History
 =======

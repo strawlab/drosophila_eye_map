@@ -11,7 +11,21 @@ This software package concerns the eye-map of `Drosophila
 melanogaster` made by Erich Buchner during his diplom thesis in
 1971. These data were digitized from a high resolution scan of
 Buchner's figure and coverted to 3D and saved to the included file
-receptor_directions_buchner71.csv.
+``receptor_directions_buchner71.csv``. This software package is in the
+Python_ language, and for full functionality depends on basemap_,
+numpy_, scipy_, cgkit_ (1.x), matplotlib_, the `Python Imaging
+Library`_, and, optionally, the Python VTK_ bindings. To simply use
+the ``receptor_directions_buchner71.csv`` file, however, any program
+which can open a comma separated values file will work.
+
+.. _Python: http://www.python.org/
+.. _basemap: http://sourceforge.net/project/showfiles.php?group_id=80706&package_id=142792
+.. _numpy: http://sourceforge.net/project/showfiles.php?group_id=1369&package_id=175103
+.. _scipy: http://scipy.org/
+.. _cgkit: http://sourceforge.net/project/showfiles.php?group_id=50475&package_id=44077&release_id=274256
+.. _matplotlib: http://matplotlib.sourceforge.net/
+.. _Python Imaging Library: http://www.pythonware.com/products/pil/
+.. _VTK: http://www.vtk.org/
 
 .. figure:: http://code.astraw.com/drosophila_eye_map/download/eye_map_small.gif
     :alt: Drosophila eye map
@@ -31,8 +45,9 @@ receptor_directions_buchner71.csv.
    Data of Buchner showing the eye map of `Drosophila melanogaster`
    eye map overlaid on a colormap showing interommatidial distance
    averaged over each ommatidium's nearest neighbors. (This image was
-   generated using the make_buchner_interommatidial_distance_figure.py
-   script included in the package.)
+   generated using the
+   ``make_buchner_interommatidial_distance_figure.py`` script included
+   in the package.)
 
 .. figure:: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance_ortho_small.gif
    :alt: Orthographic projection Drosophila eye map with interommatidial distance
@@ -43,7 +58,7 @@ receptor_directions_buchner71.csv.
    Same data as the color stereographic projection above, but plotted
    on an orthographic projection for comparison with an `eyemap of
    Eristalis tenax`_.  (This image was generated using the
-   make_buchner_interommatidial_distance_figure.py script included in
+   ``make_buchner_interommatidial_distance_figure.py`` script included in
    the package.)
 
 .. _eyemap of Eristalis tenax: http://jeb.biologists.org/cgi/content/full/209/21/4339/FIG1
@@ -79,29 +94,33 @@ Contents of the package
  * receptor_directions_buchner71.csv - Comma separated value (CSV)
    file which indicates the directions of the ommaditial axes in 3D as
    vectors in a unit sphere. Output by
-   precompte_buchner71_optics.py. Note that this includes axes for
+   ``precompte_buchner71_optics.py``. Note that this includes axes for
    both eyes (1398 ommatidia). To get the axes for a single eye, take
    the first or last 699 rows. The coordinate system is arranged so
    that +X is frontal (rostral), +Y is left, and +Z is dorsal.
 
  * trace_buchner_1971.py - Python script used to digitize the
    locations of the ommatidial axes on the stereographic projection of
-   eye_map.gif.
+   eye_map.gif__.
+
+__ http://code.astraw.com/drosophila_eye_map/download/eye_map.gif
 
  * precompute_buchner71_optics.py - Python script used to take the
-   output of trace_buchner_1971.py and convert it to a 3D coordinate
-   system. Furthermore, a Gaussian spatial weighting map inspired by
-   Neumann (2002) [#Neumann]_ is also implemented. These precomputed
-   data are then saved for use by other programs as a file called
-   precomputed_buchner71.py.
+   output of ``trace_buchner_1971.py`` and convert it to a 3D
+   coordinate system. Furthermore, a Gaussian spatial weighting map
+   inspired by Neumann (2002) [#Neumann]_ is also implemented. These
+   precomputed data are then saved for use by other programs as a file
+   called ``precomputed_buchner71.py``.
 
- * util.py - Utility routines used by precompute_buchner71_optics.py.
+ * util.py - Utility routines used by
+   ``precompute_buchner71_optics.py``.
 
  * plot_receptors_vtk.py - Python script which is automatically
-   inserted into the output of precompute_buchner71_optics.py.
+   inserted into the output of ``precompute_buchner71_optics.py``.
 
- * make_buchner_interommatidial_distance_figure.py - Plot Buchner's
-   data overlaid on a colormap showing mean interommatidial distance.
+ * make_buchner_interommatidial_distance_figure.py - Plot
+   Buchner's data overlaid on a colormap showing mean interommatidial
+   distance.
 
 License
 =======

@@ -38,7 +38,7 @@ import cgtypes # cgkit 1.x
 import numpy
 import scipy.sparse
 array=numpy.array
-from scikits import delaunay
+from matplotlib import delaunay
 from util import get_mean_interommatidial_distance, flatten_cubemap, \
      make_receptor_sensitivities,  make_repr_able, save_as_python, cube_order
 import sys, os, csv

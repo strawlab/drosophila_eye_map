@@ -30,7 +30,6 @@ import cgtypes # cgkit 1.x
 import math
 import numpy
 import scipy, scipy.io
-import sets
 
 cube_order = ['posx','negx','posy','negy','posz','negz']
 
@@ -48,7 +47,7 @@ def get_mean_interommatidial_distance( receptor_dirs, triangles ):
     # this is not efficient...
     mean_thetas = []
     for iv,v in enumerate(receptor_dirs):
-        neighbors = sets.Set()
+        neighbors = set()
         for tri in triangles:
             if iv in tri:
                 for it in tri:

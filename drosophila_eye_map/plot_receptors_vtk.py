@@ -26,7 +26,26 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # Author: Andrew D. Straw
-from util import get_mean_interommatidial_distance
+
+# This function copied from util.py.
+def get_mean_interommatidial_distance( receptor_dirs, triangles ):
+    """returns values in radians"""
+    # this is not efficient...
+    mean_thetas = []
+    for iv,v in enumerate(receptor_dirs):
+        neighbors = set()
+        for tri in triangles:
+            if iv in tri:
+                for it in tri:
+                    neighbors.add(it)
+        neighbors = list(neighbors)
+        neighbors.remove( iv )
+        neighbor_dirs = [ receptor_dirs[int(n)] for n in neighbors ]
+        cos_theta_neighbors = [numpy.dot(n,v) for n in neighbor_dirs]
+        theta_neighbors = [numpy.arccos( c ) for c in cos_theta_neighbors]
+        mean_theta = numpy.mean(theta_neighbors)
+        mean_thetas.append(mean_theta)
+    return mean_thetas
 
 if __name__ == '__main__':
 

@@ -9,4 +9,4 @@ VERSION=0.4
 git archive --format=zip -v --prefix=drosophila_eye_map-$VERSION/ release-$VERSION > ../drosophila_eye_map-$VERSION.zip
 
 # upload the files
-rsync -avzP tmp/drosophila_eye_map-$VERSION.zip code.astraw.com:/var/websites/code.astraw.com/drosophila_eye_map/download/
+rsync -avzP ../drosophila_eye_map-$VERSION.zip code.astraw.com:/var/websites/code.astraw.com/drosophila_eye_map/download/

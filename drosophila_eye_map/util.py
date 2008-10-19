@@ -29,6 +29,7 @@
 import cgtypes # cgkit 1.x
 import math
 import numpy
+import numpy as np
 import scipy, scipy.io
 
 cube_order = ['posx','negx','posy','negy','posz','negz']
@@ -171,6 +172,22 @@ def make_receptor_sensitivities(all_d_q,delta_rho_q=None,res=64):
 def flatten_cubemap( cubemap ):
     rank1 = numpy.concatenate( [ numpy.ravel(cubemap[dir]) for dir in cube_order], axis=0 )
     return rank1
+
+def unflatten_cubemap( rank1 ):
+    rank1 = np.asarray(rank1)
+    assert rank1.ndim==1
+    total_n_pixels = rank1.shape[0]
+    n_pixels_per_face = total_n_pixels//6
+    n_pixels_per_side = int(np.sqrt(n_pixels_per_face))
+    assert 6*n_pixels_per_side**2==total_n_pixels
+
+    cubemap = {}
+    for count,dir in enumerate(cube_order):
+        start_idx = count*n_pixels_per_face
+        this_face_pixels = rank1[ start_idx:start_idx+n_pixels_per_face ]
+        this_face_pixels = np.reshape(this_face_pixels,(n_pixels_per_side,n_pixels_per_side))
+        cubemap[dir]=this_face_pixels
+    return cubemap
 
 def make_repr_able(x):
     if isinstance(x, cgtypes.vec3):

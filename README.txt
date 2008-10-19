@@ -11,12 +11,17 @@ This software package concerns the eye-map of `Drosophila
 melanogaster` made by Erich Buchner during his diplom thesis in
 1971. These data were digitized from a high resolution scan of
 Buchner's figure and coverted to 3D and saved to the included file
-``receptor_directions_buchner71.csv``. This software package is in the
-Python_ language, and for full functionality depends on basemap_,
+``receptor_directions_buchner71.csv``.
+
+Python package requirements
+===========================
+
+To use any of the included programs, you will need the Python_
+language. For full functionality, this package depends on basemap_,
 numpy_, scipy_, cgkit_ (1.x), matplotlib_, the `Python Imaging
 Library`_, and, optionally, the Python VTK_ bindings. To simply use
 the ``receptor_directions_buchner71.csv`` file, however, any program
-which can open a comma separated values file will work.
+which can open a CSV (comma separated values) file will work.
 
 .. _Python: http://www.python.org/
 .. _basemap: http://sourceforge.net/project/showfiles.php?group_id=80706&package_id=142792
@@ -66,7 +71,8 @@ which can open a comma separated values file will work.
 Download
 ========
 
-To download current and older versions of this package, go to the `download page`_
+To download current and older versions of this package, go to the
+`download page`_
 
 .. _download page: http://code.astraw.com/drosophila_eye_map/download
 
@@ -80,16 +86,45 @@ the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
 would be useful to others, and so he created this package.
 
-This is release 0.3, released September 29, 2008.
+This is release 0.4, unreleased.
 
 .. _software package: http://dickinson.caltech.edu/Research/Grand_Unified_Fly
 
 Contents of the package
 =======================
 
- * README.txt - this file
+In the top directory:
 
  * CHANGELOG.txt - list of changes since last release
+
+ * LICENSE.txt - the (BSD) license
+
+ * README.txt - this file
+
+ * setup.py - script to install the software
+
+ * upload_stuff.sh - script to release a package (only useful for
+   maintainer)
+
+ * drosophila_eye_map/ - subdirectory, see below
+
+In the ``drosophila_eye_map`` subdirectory:
+
+ * __init__.py - Empty file required for Python
+
+ * make_buchner_interommatidial_distance_figure.py - Plot
+   Buchner's data overlaid on a colormap showing mean interommatidial
+   distance.
+
+ * plot_receptors_vtk.py - Python script which is automatically
+   inserted into the output of ``precompute_buchner71_optics.py``.
+
+ * precompute_buchner71_optics.py - Python script used to take the
+   output of ``trace_buchner_1971.py`` and convert it to a 3D
+   coordinate system. Furthermore, a Gaussian spatial weighting map
+   inspired by Neumann (2002) [#Neumann]_ is also implemented. These
+   precomputed data are then saved for use by other programs as a file
+   called ``precomputed_buchner71.py``.
 
  * receptor_directions_buchner71.csv - Comma separated value (CSV)
    file which indicates the directions of the ommaditial axes in 3D as
@@ -105,22 +140,8 @@ Contents of the package
 
 __ http://code.astraw.com/drosophila_eye_map/download/eye_map.gif
 
- * precompute_buchner71_optics.py - Python script used to take the
-   output of ``trace_buchner_1971.py`` and convert it to a 3D
-   coordinate system. Furthermore, a Gaussian spatial weighting map
-   inspired by Neumann (2002) [#Neumann]_ is also implemented. These
-   precomputed data are then saved for use by other programs as a file
-   called ``precomputed_buchner71.py``.
-
  * util.py - Utility routines used by
    ``precompute_buchner71_optics.py``.
-
- * plot_receptors_vtk.py - Python script which is automatically
-   inserted into the output of ``precompute_buchner71_optics.py``.
-
- * make_buchner_interommatidial_distance_figure.py - Plot
-   Buchner's data overlaid on a colormap showing mean interommatidial
-   distance.
 
 License
 =======

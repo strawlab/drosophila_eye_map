@@ -86,7 +86,7 @@ the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
 would be useful to others, and so he created this package.
 
-This is release 0.4, unreleased.
+This is release 0.4, released Oct 19, 2008.
 
 .. _software package: http://dickinson.caltech.edu/Research/Grand_Unified_Fly
 

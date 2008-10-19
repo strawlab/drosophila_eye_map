@@ -40,7 +40,7 @@ setup(name='drosophila_eye_map',
       description='eye map of Drosophila melanogaster',
       author='Andrew Straw',
       author_email='strawman@astraw.com',
-      version='0.4-dev', # keep in sync with upload_stuff.sh and README.txt
+      version='0.4', # keep in sync with upload_stuff.sh and README.txt
       packages = find_packages(),
       package_data = {'drosophila_eye_map':['receptor_weight_matrix_64_buchner71.mat',
                                             #'precomputed_buchner71.py', # automatically installed since it's a Python file

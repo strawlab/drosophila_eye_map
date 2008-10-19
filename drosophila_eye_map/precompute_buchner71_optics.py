@@ -782,8 +782,8 @@ def main():
 
     print 'calculating weight_maps...'
     weight_maps_64 = make_receptor_sensitivities( receptor_dirs,
-                                               delta_rho_q=delta_rho_q,
-                                               res=64 )
+                                                  delta_rho_q=delta_rho_q,
+                                                  res=64 )
     print 'done'
 
     clip_thresh=1e-5

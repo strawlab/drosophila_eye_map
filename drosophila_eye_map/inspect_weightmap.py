@@ -157,6 +157,7 @@ class App:
         # pcolor figure -- stereographic projection
         self.fig = plt.figure(figsize=(8,12))
         ax = plt.subplot(2,1,1)
+        ax.set_title('click on an ommatidium to show weightmap')
         self.picker_axes = ax
 
         good = self.x < 1e29 # basemap seems to set bad values to 1e30
@@ -238,7 +239,9 @@ class App:
 
         plt.show()
 
-if __name__=='__main__':
+def main():
     app = App()
     app.mainloop()
 
+if __name__=='__main__':
+    main()

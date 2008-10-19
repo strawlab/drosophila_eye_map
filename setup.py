@@ -45,4 +45,9 @@ setup(name='drosophila_eye_map',
       package_data = {'drosophila_eye_map':['receptor_weight_matrix_64_buchner71.mat',
                                             #'precomputed_buchner71.py', # automatically installed since it's a Python file
                                             ]},
+      entry_points = {
+       'console_scripts': [
+         'drosophila_eye_map_inspect_weightmap = drosophila_eye_map.inspect_weightmap:main',
+         ],
+       }
       )

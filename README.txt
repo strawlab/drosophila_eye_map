@@ -112,6 +112,8 @@ In the ``drosophila_eye_map`` subdirectory:
 
  * __init__.py - Empty file required for Python
 
+ * inspect_weightmap.py - raphical program to inspect weightmap
+
  * make_buchner_interommatidial_distance_figure.py - Plot
    Buchner's data overlaid on a colormap showing mean interommatidial
    distance.

@@ -26,8 +26,10 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # Author: Andrew D. Straw
+from __future__ import division
+
 import cgtypes # cgkit 1.x
-import math
+import math, warnings
 import numpy
 import numpy as np
 import scipy, scipy.io
@@ -285,21 +287,23 @@ def get_code_for_var( name, fname_prefix, var):
                 if 1:
                     # This is a crazy test because equality testing in
                     # cgkit 1.x doesn't seem to work very well.
-                    isseq = False
+                    is_sequence = False
                     try:
                         len(var)
-                        isseq = True
+                        is_sequence = True
                     except:
                         pass
 
-                    if isseq:
+                    if is_sequence:
                         assert len(var) == len(cmp)
                         for idx in range(len(var)):
                             if var[idx] != cmp[idx]:
                                 if repr(var[idx]) == repr(cmp[idx]):
                                     continue
-                                raise RuntimeError("equality failure at idx %d. Original = %s, new = %s"%(
-                                    idx,repr(var[idx]),repr(cmp[idx])))
+                                warnings.warn('equality failure')
+                                continue
+                                ## raise RuntimeError("equality failure at idx %d. Original = %s, new = %s"%(
+                                ##     idx,repr(var[idx]),repr(cmp[idx])))
                         # hmm, why weren't these equal? i guess there's more precision than repr() checks?
                         return '%s = '%(name,)+ra+'\n'
                 else:

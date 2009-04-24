@@ -7,8 +7,8 @@ echo "Andrew: copy the README.txt file into ~/src/astraw-private-repo/work-websi
 # Make sure this corresponds to the value in setup.py and README.txt
 VERSION=0.4
 
-git archive --format=zip -v --prefix=drosophila_eye_map-$VERSION/ release-$VERSION > ../drosophila_eye_map-$VERSION.zip
-git archive --format=tar -v --prefix=drosophila_eye_map-$VERSION/ release-$VERSION > ../drosophila_eye_map-$VERSION.tar
+git archive --format=zip -v --prefix=drosophila_eye_map-$VERSION/ release/$VERSION > ../drosophila_eye_map-$VERSION.zip
+git archive --format=tar -v --prefix=drosophila_eye_map-$VERSION/ release/$VERSION > ../drosophila_eye_map-$VERSION.tar
 gzip ../drosophila_eye_map-$VERSION.tar
 
 # upload the files

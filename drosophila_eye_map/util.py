@@ -263,7 +263,7 @@ def get_code_for_var( name, fname_prefix, var):
             savedict = {name:var}
             #scipy.io.savemat(fname, savedict, format='5' )
             scipy.io.savemat(fd, savedict)
-            result = '%s = scipy.io.loadmat(open(os.path.join(datadir,"%s"),mode="rb"))["%s"]\n'%(name,fname,name)
+            result = '%s = scipy.io.loadmat(open(os.path.join(datadir,"%s"),mode="rb"),struct_as_record=False)["%s"]\n'%(name,fname,name)
         return result
 
     if 1:

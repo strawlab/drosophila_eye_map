@@ -10,7 +10,7 @@ Overview
 This software package concerns the eye-map of `Drosophila
 melanogaster` made by Erich Buchner during his diplom thesis in
 1971. These data were digitized from a high resolution scan of
-Buchner's figure and coverted to 3D and saved to the included file
+Buchner's figure and converted to 3D and saved to the included file
 ``receptor_directions_buchner71.csv``.
 
 Python package requirements
@@ -79,7 +79,7 @@ To download current and older versions of this package, go to the
 History
 =======
 
-These programs and files have been extraced from Andrew Straw's "fsee"
+These programs and files have been extracted from Andrew Straw's "fsee"
 `software package`_ for simulating the visual world of Drosophila
 described in Dickson, Straw, and Dickinson (2008) [#Dickson]_. At
 the 2nd International Conference on Invertebrate Vision in Sweden,

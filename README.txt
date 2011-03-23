@@ -79,16 +79,16 @@ To download current and older versions of this package, go to the
 History
 =======
 
-These programs and files have been extracted from Andrew Straw's "fsee"
-`software package`_ for simulating the visual world of Drosophila
-described in Dickson, Straw, and Dickinson (2008) [#Dickson]_. At
+These programs and files have been extracted from Andrew Straw's `fsee
+<https://github.com/strawlab/fsee>`_ software package for simulating
+the visual world of Drosophila described in Dickson, Straw, and
+Dickinson (2008) [#Dickson]_, part of the `GUF
+<http://strawlab.org/2011/03/23/grand-unified-fly.html>`_ endeavor. At
 the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
 would be useful to others, and so he created this package.
 
 This is release 0.4, released Oct 19, 2008.
-
-.. _software package: http://dickinson.caltech.edu/Research/Grand_Unified_Fly
 
 Contents of the package
 =======================
@@ -148,7 +148,7 @@ __ http://code.astraw.com/drosophila_eye_map/download/eye_map.gif
 License
 =======
 
-This software was written by Andrew Straw <astraw@caltech.edu>, is
+This software was written by Andrew Straw <andrew.straw@imp.ac.at>, is
 copyright by the California Institute of Technology, and is licensed
 under the BSD license. See the LICENSE.txt file for details.
 
@@ -158,7 +158,7 @@ Related software
 `ArthroVision by the Invariant Corporation`_ is an insect optics
 simulation package.
 
-.. _ArthroVision by the Invariant Corporation: http://www.invariant-corp.com/news.html#eglin
+.. _ArthroVision by the Invariant Corporation: http://www.invariant-corp.com/arthrovision/
 
 (See also the `History`_ section, above, for a description of Andrew
 Straw's fsee software package.)

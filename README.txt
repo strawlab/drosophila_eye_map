@@ -13,6 +13,12 @@ melanogaster` made by Erich Buchner during his diplom thesis in
 Buchner's figure and converted to 3D and saved to the included file
 ``receptor_directions_buchner71.csv``.
 
+Souce code repository
+=====================
+
+This source code is being hosted at
+https://github.com/strawlab/drosophila_eye_map
+
 Python package requirements
 ===========================
 

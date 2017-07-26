@@ -26,7 +26,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # Author: Andrew D. Straw
-from __future__ import division
+from __future__ import division, print_function
 
 import cgtypes # cgkit 1.x
 import math, warnings
@@ -103,7 +103,7 @@ def make_receptor_sensitivities(all_d_q,delta_rho_q=None,res=64):
         this_row_vecs = []
         for y in vals:
             on_cube_3d = (x,y,z)
-            #print 'on_cube_3d   %5.2f %5.2f %5.2f'%on_cube_3d
+            #print('on_cube_3d   %5.2f %5.2f %5.2f'%on_cube_3d)
             v3norm = normalize(on_cube_3d) # get direction of each pixel
             p_p = cgtypes.quat(0.0, v3norm[0], v3norm[1], v3norm[2])
             this_row_vecs.append(p_p)
@@ -140,7 +140,8 @@ def make_receptor_sensitivities(all_d_q,delta_rho_q=None,res=64):
 
     # convert from quat to vec3
     rfv = {}
-    for key, rows in face_vecs.iteritems():
+    for key in face_vecs:
+        rows = face_vecs[key]
         rfv[key] = []
         for row in rows:
             this_row = [ cgtypes.vec3(col.x, col.y, col.z) for col in row ] # convert to vec3
@@ -164,7 +165,8 @@ def make_receptor_sensitivities(all_d_q,delta_rho_q=None,res=64):
             ssf += numpy.sum( wm.flat )
 
         # normalize
-        for mapname,wm in weight_maps_d_q.iteritems():
+        for mapname in weight_maps_d_q:
+            wm = weight_maps_d_q[mapname]
             weight_maps_d_q[mapname] = wm/ssf
 
         # save maps by receptor direction
@@ -198,7 +200,7 @@ def make_repr_able(x):
         return repr_quat(x)
     elif isinstance(x, list):
         # recurse into
-        y = map( make_repr_able,x)
+        y = list(map( make_repr_able,x))
         return y
     else:
         return x
@@ -275,11 +277,11 @@ def get_code_for_var( name, fname_prefix, var):
         quat = cgtypes.quat
         try:
             cmp = eval(ra)
-        except Exception, err:
+        except Exception as err:
             import traceback
-            print 'the following exception will trigger a RuntimeError("eval failed") call:'
+            print('the following exception will trigger a RuntimeError("eval failed") call:')
             traceback.print_exc()
-            raise RuntimeError("eval failed")
+            raise RuntimeError("eval failed, check other traceback printed above")
         else:
             if cmp==var:
                 return '%s = '%(name,)+ra+'\n'
@@ -313,7 +315,7 @@ def xyz2lonlat(x,y,z):
     R2D = 180.0/math.pi
     try:
         lat = math.asin(z)*R2D
-    except ValueError,err:
+    except ValueError as err:
         if z>1 and z < 1.1:
             lat = math.asin(1.0)*R2D
         else:

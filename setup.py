@@ -34,7 +34,7 @@ from setuptools import setup, find_packages
 import os
 
 if not os.path.exists(os.path.join('drosophila_eye_map','precomputed_buchner71.py')):
-    raise ValueError('precomputed_buchner71.py is missing')
+    raise ValueError('precomputed_buchner71.py is missing, hint: "cd drosophila_eye_map && python precompute_buchner71_optics.py"')
 
 setup(name='drosophila_eye_map',
       description='eye map of Drosophila melanogaster',

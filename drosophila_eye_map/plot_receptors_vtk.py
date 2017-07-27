@@ -128,7 +128,7 @@ if __name__ == '__main__':
                 atext = vtk.vtkVectorText()
                 atext.SetText("%.1f"%(dist*R2D,))
                 textMapper = vtk.vtkPolyDataMapper()
-                textMapper.SetInput(atext.GetOutput())
+                textMapper.SetInputConnection(atext.GetOutputPort())
                 textActor = vtk.vtkFollower()
                 textActor.SetMapper(textMapper)
                 scale = 0.03
@@ -175,7 +175,7 @@ if __name__ == '__main__':
                 profileData.SetPolys(tri_cells)
 
                 profileMapper = vtk.vtkPolyDataMapper()
-                profileMapper.SetInput(profileData)
+                profileMapper.SetInputData(profileData)
 
                 profile = vtk.vtkActor()
                 profile.SetMapper(profileMapper)
@@ -197,11 +197,11 @@ if __name__ == '__main__':
                 head.SetPhiResolution(15)
 
                 head_glyphs = vtk.vtkGlyph3D()
-                head_glyphs.SetInput(points_poly_data)
-                head_glyphs.SetSource(head.GetOutput())
+                head_glyphs.SetInputConnection(points_poly_data)
+                head_glyphs.SetSource(head.GetOutputPort())
 
                 head_glyph_mapper = vtk.vtkPolyDataMapper()
-                head_glyph_mapper.SetInput(head_glyphs.GetOutput())
+                head_glyph_mapper.SetInputConnection(head_glyphs.GetOutputPort())
                 headGlyphActor = vtk.vtkActor()
                 headGlyphActor.SetMapper(head_glyph_mapper)
                 headGlyphActor.GetProperty().SetDiffuseColor(purple)
@@ -220,12 +220,12 @@ if __name__ == '__main__':
                 # Add thickness to the resulting line.
                 profileTubes = vtk.vtkTubeFilter()
                 profileTubes.SetNumberOfSides(8)
-                profileTubes.SetInput(profileData)
+                profileTubes.SetInputData(profileData)
                 profileTubes.SetRadius(.005)
                 #profileTubes.SetRadius(.8)
 
                 profileMapper = vtk.vtkPolyDataMapper()
-                profileMapper.SetInput(profileTubes.GetOutput())
+                profileMapper.SetInputConnection(profileTubes.GetOutputPort())
 
                 profile = vtk.vtkActor()
                 profile.SetMapper(profileMapper)

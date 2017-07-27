@@ -34,7 +34,7 @@ Heisenberg, M. and Wolf, R., \enquote{Vision in Drosophila: Genetics of
   Microbehavior (Studies of Brain Function)}, Springer Verlag, 1984.
 """
 
-import cgtypes # cgkit 1.x
+import cgtypes # cgkit 1.x, "pip install cgkit1"
 import numpy
 import scipy.sparse
 array=numpy.array

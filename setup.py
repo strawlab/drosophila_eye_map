@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2005-2008, California Institute of Technology
 # Copyright (c) 2017, Albert-Ludwigs-Universität Freiburg
 # All rights reserved.

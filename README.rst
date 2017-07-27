@@ -104,7 +104,7 @@ the 2nd International Conference on Invertebrate Vision in Sweden,
 2008, Andrew learned that a digitized form of the Drosophila eye map
 would be useful to others, and so he created this package.
 
-This is release 0.4, released Oct 19, 2008.
+This is release 0.5.0, released 27 July 2017.
 
 Contents of the package
 =======================

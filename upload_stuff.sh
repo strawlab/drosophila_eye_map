@@ -5,7 +5,7 @@
 echo "Andrew: copy the README.txt file into ~/src/astraw-private-repo/work-website/input-code/drosophila_eye_map/README.txt"
 
 # Make sure this corresponds to the value in setup.py and README.txt
-VERSION=0.4
+VERSION=0.5.0
 
 git archive --format=zip -v --prefix=drosophila_eye_map-$VERSION/ release/$VERSION > ../drosophila_eye_map-$VERSION.zip
 git archive --format=tar -v --prefix=drosophila_eye_map-$VERSION/ release/$VERSION > ../drosophila_eye_map-$VERSION.tar

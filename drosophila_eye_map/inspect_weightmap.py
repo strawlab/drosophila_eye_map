@@ -122,6 +122,7 @@ class App:
         if self.highlight is None:
             self.highlight, = ax.plot([self.x[ind]],[self.y[ind]],'ro',
                                       ms=4.0,
+                                      markeredgecolor='k',
                                       picker=0, # don't pick this red dot
                                       )
         else:
@@ -166,6 +167,7 @@ class App:
         good = self.x < 1e29 # basemap seems to set bad values to 1e30
         ax.plot(self.x[good],self.y[good],'wo',
                 ms=4.0,
+                markeredgecolor='k',
                 picker=5, # 5 points tolerance
                 )
 

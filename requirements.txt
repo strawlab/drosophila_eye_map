@@ -1,0 +1,4 @@
+cgkit1
+numpy
+scipy
+matplotlib

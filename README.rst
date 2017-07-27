@@ -76,7 +76,7 @@ which can open a CSV (comma separated values) file will work.
    :height: 436
 
    Interactive 3D view of the eyemap. (This was generated using the
-   ``precomputed_buchner71.py`` script included in the package.)◊
+   ``precomputed_buchner71.py`` script included in the package.)
 
 .. figure:: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance_ortho_small.gif
    :alt: Orthographic projection Drosophila eye map with interommatidial distance

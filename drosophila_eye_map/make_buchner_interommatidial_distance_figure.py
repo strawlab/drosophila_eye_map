@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2005-2008, California Institute of Technology
+# Copyright (c) 2017, Albert-Ludwigs-Universität Freiburg
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -26,12 +28,12 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 # Author: Andrew D. Straw
-from __future__ import division
+from __future__ import division, print_function
 import numpy as np
-from scikits import delaunay as dlny
+import matplotlib.delaunay as dlny
 
-import drosophila_eye_map.precomputed_buchner71 as precomputed_buchner_1971
-from drosophila_eye_map.util import get_mean_interommatidial_distance, xyz2lonlat
+import precomputed_buchner71 as precomputed_buchner_1971
+from util import get_mean_interommatidial_distance, xyz2lonlat
 from mpl_toolkits.basemap import Basemap # basemap > 0.9.9.1
 
 def do_projection( proj, lon_lats, dists, xres = 120, yres = 100 ):
@@ -122,9 +124,9 @@ def main():
     cbar.ax.set_ylabel('mean inter-ommatidial distance (deg)')
 
     save_fname = 'interommatidial_distance.png'
-    print 'saving',save_fname
+    print('saving',save_fname)
     fig3.savefig(save_fname)
-    print 'OK'
+    print('OK')
 
 
 
@@ -211,9 +213,9 @@ def main():
     plt.title('female average inter-ommatidial angle (degrees)')
 
     save_fname = 'interommatidial_distance_ortho.png'
-    print 'saving',save_fname
+    print('saving',save_fname)
     fig2.savefig(save_fname)
-    print 'OK'
+    print('OK')
 
     plt.show()
 

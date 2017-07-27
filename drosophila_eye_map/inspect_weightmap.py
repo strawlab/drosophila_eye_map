@@ -40,6 +40,7 @@ environment of a drosophila_eye_map package directory, it carries
 all its dependencies with it.) This could be a problem if, for
 example, the cube_order ever changes.
 """
+from __future__ import division, print_function
 
 import numpy as np
 import math

@@ -16,7 +16,7 @@ Buchner's figure and converted to 3D and saved to the included file
 Installation
 ============
 
-Tested with Python 2.
+Tested with Python 2 and 3.
 
     cd drosophila_eye_map
     python precompute_buchner71_optics.py

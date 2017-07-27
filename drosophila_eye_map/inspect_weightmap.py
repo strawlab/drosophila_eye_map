@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) 2005-2008, California Institute of Technology
+# Copyright (c) 2017, Albert-Ludwigs-Universität Freiburg
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -66,7 +68,7 @@ def xyz2lonlat(x,y,z):
     R2D = 180.0/math.pi
     try:
         lat = math.asin(z)*R2D
-    except ValueError,err:
+    except ValueError as err:
         if z>1 and z < 1.1:
             lat = math.asin(1.0)*R2D
         else:

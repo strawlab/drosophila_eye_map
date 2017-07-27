@@ -70,6 +70,14 @@ which can open a CSV (comma separated values) file will work.
    ``make_buchner_interommatidial_distance_figure.py`` script included
    in the package.)
 
+.. figure:: drosophila_eye_map2.gif
+   :alt: Drosophila eye map
+   :width: 475
+   :height: 436
+
+   Interactive 3D view of the eyemap. (This was generated using the
+   ``precomputed_buchner71.py`` script included in the package.)◊
+
 .. figure:: http://code.astraw.com/drosophila_eye_map/download/interommatidial_distance_ortho_small.gif
    :alt: Orthographic projection Drosophila eye map with interommatidial distance
    :width: 285

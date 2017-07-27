@@ -30,21 +30,21 @@
 # Author: Andrew D. Straw
 
 # This function copied from util.py.
-def get_mean_interommatidial_distance( receptor_dirs, triangles ):
+def get_mean_interommatidial_distance(receptor_dirs, triangles):
     """returns values in radians"""
     # this is not efficient...
     mean_thetas = []
-    for iv,v in enumerate(receptor_dirs):
+    for iv, v in enumerate(receptor_dirs):
         neighbors = set()
         for tri in triangles:
             if iv in tri:
                 for it in tri:
                     neighbors.add(it)
         neighbors = list(neighbors)
-        neighbors.remove( iv )
-        neighbor_dirs = [ receptor_dirs[int(n)] for n in neighbors ]
-        cos_theta_neighbors = [numpy.dot(n,v) for n in neighbor_dirs]
-        theta_neighbors = [numpy.arccos( c ) for c in cos_theta_neighbors]
+        neighbors.remove(iv)
+        neighbor_dirs = [receptor_dirs[int(n)] for n in neighbors]
+        cos_theta_neighbors = [numpy.dot(n, v) for n in neighbor_dirs]
+        theta_neighbors = [numpy.arccos(c) for c in cos_theta_neighbors]
         mean_theta = numpy.mean(theta_neighbors)
         mean_thetas.append(mean_theta)
     return mean_thetas
@@ -52,20 +52,20 @@ def get_mean_interommatidial_distance( receptor_dirs, triangles ):
 if __name__ == '__main__':
 
     if 0:
-        v2 = [ (v.x, v.y, v.z) for v in receptor_dirs ]
+        v2 = [(v.x, v.y, v.z) for v in receptor_dirs]
         if 0:
-            print repr(v2)
+            print(repr(v2))
         elif 0:
             import pylab
             xs, ys, zs = zip(*v2)
-            pylab.plot( xs, zs )
+            pylab.plot(xs, zs)
             pylab.show()
         elif 0:
             # This was piped to qhull "qhull i < receptors.qhull"
-            print '3'
-            print len(receptor_dirs)
+            print('3')
+            print(len(receptor_dirs))
             for v in receptor_dirs:
-                print ' '.join(map(repr,v))
+                print(' '.join(map(repr, v)))
 
     if 1:
         import vtk
@@ -81,26 +81,26 @@ if __name__ == '__main__':
                 camera = vtk.vtkCamera()
                 camera.SetParallelProjection(1)
 
-                camera.SetClippingRange (1e-3, 1e6)
+                camera.SetClippingRange(1e-3, 1e6)
 
                 ren1 = vtk.vtkRenderer()
                 lk = vtk.vtkLightKit()
-                ren1.SetViewport(0.0,0,1.0,1.0)
-                ren1.SetBackground( .6,.6,.75)
-                ren1.SetActiveCamera( camera )
-                renWin.AddRenderer( ren1 )
-                renderers.append( ren1 )
+                ren1.SetViewport(0.0, 0, 1.0, 1.0)
+                ren1.SetBackground(.6, .6, .75)
+                ren1.SetActiveCamera(camera)
+                renWin.AddRenderer(ren1)
+                renderers.append(ren1)
 
-            renWin.SetSize( 1024, 768 )
+            renWin.SetSize(1024, 768)
             return renWin, renderers
 
         def interact_with_renWin(renWin, ren1=None, actor=None):
 
             iren = vtk.vtkRenderWindowInteractor()
-            iren.SetRenderWindow( renWin )
+            iren.SetRenderWindow(renWin)
 
             iren.SetInteractorStyle(vtk.vtkInteractorStyleTrackballCamera())
-            iren.Initialize ()
+            iren.Initialize()
 
             renWin.Render()
 
@@ -111,20 +111,20 @@ if __name__ == '__main__':
         camera = renderers[0].GetActiveCamera()
 
         camera.SetParallelProjection(1)
-        camera.SetFocalPoint (0.0, 0.0, 0.0)
-        camera.SetPosition (-7.0408423455838438, 4.8870908878427501, -1.2421278994521863)
+        camera.SetFocalPoint(0.0, 0.0, 0.0)
+        camera.SetPosition(-7.0408423455838438, 4.8870908878427501, -1.2421278994521863)
         camera.SetViewAngle(30.0)
-        camera.SetViewUp (0.57291464566682204, 0.73136940687668806, -0.36995621290269104)
-        camera.SetClippingRange (3.6770148314673339, 14.954014556113785)
+        camera.SetViewUp(0.57291464566682204, 0.73136940687668806, -0.36995621290269104)
+        camera.SetClippingRange(3.6770148314673339, 14.954014556113785)
         camera.SetParallelScale(3.89701935633)
 
         renderers[0].SetActiveCamera(camera)
 
-        def vtk_label_iod( receptor_dirs, triangles, renderers ):
-            dists = get_mean_interommatidial_distance( receptor_dirs, triangles )
+        def vtk_label_iod(receptor_dirs, triangles, renderers):
+            dists = get_mean_interommatidial_distance(receptor_dirs, triangles)
             pi = 3.1415926535897931
             R2D = 180.0/pi
-            for v,dist in zip(receptor_dirs,dists):
+            for v, dist in zip(receptor_dirs, dists):
                 atext = vtk.vtkVectorText()
                 atext.SetText("%.1f"%(dist*R2D,))
                 textMapper = vtk.vtkPolyDataMapper()
@@ -134,9 +134,9 @@ if __name__ == '__main__':
                 scale = 0.03
                 textActor.SetScale(scale, scale, scale)
                 mult = 1.02
-                textActor.AddPosition(v.x*mult,v.y*mult,v.z*mult)
+                textActor.AddPosition(v.x*mult, v.y*mult, v.z*mult)
                 for renderer in renderers:
-                    renderer.AddActor( textActor )
+                    renderer.AddActor(textActor)
 
 
         def vtk_draw(receptor_dirs, triangles, hex_faces, renderers):
@@ -159,14 +159,14 @@ if __name__ == '__main__':
                 tri_cells.InsertCellPoint(tri[2])
 
             for face in hex_faces:
-                body_lines.InsertNextCell( len(face)+1 )
+                body_lines.InsertNextCell(len(face)+1)
                 for v in face:
                     body_line_points.InsertNextPoint(v.x, v.y, v.z)
-                    body_lines.InsertCellPoint( body_point_num )
+                    body_lines.InsertCellPoint(body_point_num)
                     body_point_num += 1
                 v = face[0] # connect to beginning
                 body_line_points.InsertNextPoint(v.x, v.y, v.z)
-                body_lines.InsertCellPoint( body_point_num )
+                body_lines.InsertCellPoint(body_point_num)
                 body_point_num += 1
 
             if 1:
@@ -184,7 +184,7 @@ if __name__ == '__main__':
                 profile.GetProperty().SetSpecularPower(30)
 
                 for renderer in renderers:
-                    renderer.AddActor( profile )
+                    renderer.AddActor(profile)
             else:
                 points_poly_data = vtk.vtkPolyData()
                 points_poly_data.SetPoints(tri_points)
@@ -201,7 +201,7 @@ if __name__ == '__main__':
                 head_glyphs.SetSource(head.GetOutput())
 
                 head_glyph_mapper = vtk.vtkPolyDataMapper()
-                head_glyph_mapper.SetInput( head_glyphs.GetOutput())
+                head_glyph_mapper.SetInput(head_glyphs.GetOutput())
                 headGlyphActor = vtk.vtkActor()
                 headGlyphActor.SetMapper(head_glyph_mapper)
                 headGlyphActor.GetProperty().SetDiffuseColor(purple)
@@ -209,7 +209,7 @@ if __name__ == '__main__':
                 headGlyphActor.GetProperty().SetSpecularPower(30)
 
                 for renderer in renderers:
-                    renderer.AddActor( headGlyphActor )
+                    renderer.AddActor(headGlyphActor)
 
             if 1:
                 profileData = vtk.vtkPolyData()
@@ -236,8 +236,11 @@ if __name__ == '__main__':
                 profile.GetProperty().SetSpecularPower(30)
 
                 for renderer in renderers:
-                    renderer.AddActor( profile )
+                    renderer.AddActor(profile)
 
-        vtk_draw( receptor_dirs, triangles, hex_faces, renderers )
-        vtk_label_iod( receptor_dirs, triangles, renderers )
-        interact_with_renWin(renWin,renderers)
+        try:
+            vtk_draw(receptor_dirs, triangles, hex_faces, renderers)
+        except NameError as err:
+            print('this script is meant to be embedded into precomputed_buchner71.py, not run standalone', file=sys.stderr)
+        vtk_label_iod(receptor_dirs, triangles, renderers)
+        interact_with_renWin(renWin, renderers)

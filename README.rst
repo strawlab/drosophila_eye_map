@@ -13,6 +13,12 @@ melanogaster` made by Erich Buchner during his diplom thesis in
 Buchner's figure and converted to 3D and saved to the included file
 ``receptor_directions_buchner71.csv``.
 
+Related paper
+=============
+
+Doekele G Stavenga (2026) Charting Drosophila's non-ideal neural superposition eyes
+https://doi.org/10.1007/s00359-026-01855-9
+
 Installation
 ============
 
